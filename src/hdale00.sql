@@ -11,14 +11,13 @@ c AS (
 )
 
 
-
-
 SELECT
  COALESCE(u.name, 'not defined') AS name, COALESCE(u.lastname, 'not defined') AS lastname, b.type, 
---  SUM(b.money), 
+ SUM(b.money), 
  COALESCE(c.name, 'not defined') AS currency_name, COALESCE(c.rate_to_usd, 1) AS last_rate_to_usd
 FROM balance b
     LEFT JOIN "user" u ON b.user_id = u.id
     LEFT JOIN c ON b.currency_id = c.id
-GROUP BY u.id, b.type
+GROUP BY u.id, b.type, c.rate_to_usd, c.name
+
 
