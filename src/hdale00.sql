@@ -1,5 +1,3 @@
-WITH c AS (select * from currency where updated in (select max(updated) from currency group by id))
-
 WITH 
 c AS (SELECT * FROM currency WHERE updated IN (SELECT max(updated) FROM currency GROUP BY id)),
 n_t AS (SELECT DISTINCT
