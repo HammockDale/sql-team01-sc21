@@ -1,3 +1,4 @@
+WITH c AS (select * from currency where updated in (select max(updated) from currency group by id))
 
 WITH 
 c AS (SELECT * FROM currency WHERE updated IN (SELECT max(updated) FROM currency GROUP BY id)),
@@ -20,3 +21,4 @@ FROM balance b
 SELECT *, volume * last_rate_to_usd::float AS total_volume_in_usd
 FROM n_t
 ORDER BY name DESC, lastname, type
+
